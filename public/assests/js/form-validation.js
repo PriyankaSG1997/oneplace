@@ -137,6 +137,69 @@ $.validator.addMethod('validBranchName', function(value, element) {
       }
     });
 
+    $("#pcform").validate({
+      rules: {
+        pcname: "required",
+      },
+      messages: {
+        pcname: "Please enter your Product Category Name",
+       
+      
+      },
+      errorPlacement: function(label, element) {
+        label.addClass('mt-2 text-danger');
+        label.insertAfter(element);
+      },
+      highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-danger')
+        $(element).addClass('form-control-danger')
+      }
+    });
+
+    $("#menuform").validate({
+      rules: {
+        menuname: "required",
+        menuurl: "required",
+      },
+      messages: {
+        menuname: "Please enter your menu name",
+        menuurl: "Please enter your menu URL",
+
+      },
+      errorPlacement: function(label, element) {
+        label.addClass('mt-2 text-danger');
+        label.insertAfter(element);
+      },
+      highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-danger')
+        $(element).addClass('form-control-danger')
+      }
+    });
+
+    $("#productform").validate({
+      rules: {
+        productname: "required",
+        productcategory_id:{
+          required:true,
+          stateSelected: true
+        },      },
+      messages: {
+        productname: "Please enter your product name",
+        productcategory_id:{
+          required: 'Please select product category.',
+        },
+
+      },
+      errorPlacement: function(label, element) {
+        label.addClass('mt-2 text-danger');
+        label.insertAfter(element);
+      },
+      highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-danger')
+        $(element).addClass('form-control-danger')
+      }
+    });
+
     $("#vendorForm").validate({
       rules: {
         vendor_name: {

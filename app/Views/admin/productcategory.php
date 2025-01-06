@@ -17,36 +17,21 @@
  
           <div class="row">
             <div class="col-lg-12">
-              <div class="card">
+              <div class="card w-50">
                 <div class="card-body">
-                  <h4 class="card-title">CompleteAdd Product Category</h4>
-                  <form class="cmxform" id="signupForm" method="get" action="#">
-                    <fieldset>
-                      <div class="form-group">
-                        <label for="firstname">Firstname</label>
-                        <input id="firstname" class="form-control" name="firstname" type="text">
+                  <h4 class="card-title">Add Product Category</h4>
+                  <form class="cmxform" id="pcform" method="post" action="<?=base_url(); ?>add_productcategory">
+                    <fieldset class="row">
+                      <div class="form-group col-lg-12 col-md-12 col-12">
+                        <label for="pcname">Product Category Name</label>
+                        <input id="id" class="form-control" name="id" type="hidden" value="<?php if (!empty($single)) {echo $single->id; } ?>">
+
+                        <input id="pcname" class="form-control" name="pcname" type="text" value="<?php if (!empty($single)) {echo $single->pcname; } ?>">
                       </div>
-                      <div class="form-group">
-                        <label for="lastname">Lastname</label>
-                        <input id="lastname" class="form-control" name="lastname" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label for="Product Categoryname">Product Categoryname</label>
-                        <input id="Product Categoryname" class="form-control" name="Product Categoryname" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" class="form-control" name="password" type="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="confirm_password">Confirm password</label>
-                        <input id="confirm_password" class="form-control" name="confirm_password" type="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" class="form-control" name="email" type="email">
-                      </div>
-                      <input class="btn btn-primary" type="submit" value="Submit">
+                   
+                      <div class="form-group col-lg-12 col-md-12 col-12">
+                        <input class="btn btn-primary" type="submit" value="submit" name="submit">
+                      </div>                   
                     </fieldset>
                   </form>
                 </div>

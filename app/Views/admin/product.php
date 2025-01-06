@@ -19,34 +19,36 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">CompleteAdd Product</h4>
-                  <form class="cmxform" id="signupForm" method="get" action="#">
-                    <fieldset>
-                      <div class="form-group">
-                        <label for="firstname">Firstname</label>
-                        <input id="firstname" class="form-control" name="firstname" type="text">
+                  <h4 class="card-title">Add Product</h4>
+                  <form class="cmxform" id="productform" method="post" action="<?=base_url(); ?>add_product">
+                    <fieldset class="row">
+                      <div class="form-group col-lg-4 col-md6-6 col-12">
+                        <label for="productname">Product Name</label>
+                        <input id="id" class="form-control" name="id" type="hidden" value="<?php if (!empty($single)) {echo $single->id; } ?>">
+
+                        <input id="productname" class="form-control" name="productname" type="text" value="<?php if (!empty($single)) {echo $single->productname; } ?>">
                       </div>
-                      <div class="form-group">
-                        <label for="lastname">Lastname</label>
-                        <input id="lastname" class="form-control" name="lastname" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label for="Productname">Productname</label>
-                        <input id="Productname" class="form-control" name="Productname" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" class="form-control" name="password" type="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="confirm_password">Confirm password</label>
-                        <input id="confirm_password" class="form-control" name="confirm_password" type="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" class="form-control" name="email" type="email">
-                      </div>
-                      <input class="btn btn-primary" type="submit" value="Submit">
+                      <div class="form-group col-lg-4 col-md-4 col-6">
+                        <label for="productcategory_id">Product Category </label>
+                        <select name="productcategory_id" id="productcategory_id" class="form-control">
+                            <option value="">Please Select Product Category </option>
+                            <?php if(!empty($pc_data)){ ?>
+                                <?php foreach ($pc_data as $data): ?>
+                                    <option value="<?= $data->id; ?>" <?php 
+                                        if (isset($single) && is_object($single) && isset($single->productcategory_id)) {
+                                            echo ($single->productcategory_id == $data->id) ? 'selected="selected"' : '';
+                                        }
+                                    ?>>
+                                        <?= $data->pcname; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php } ?>
+                        </select>   
+                    </div>
+                   
+                      <div class="form-group col-lg-12 col-md-12 col-12">
+                        <input class="btn btn-primary" type="submit" value="submit" name="submit">
+                      </div>                   
                     </fieldset>
                   </form>
                 </div>
