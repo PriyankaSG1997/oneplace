@@ -8,6 +8,12 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 $routes->get('login', 'Home::login');
+$routes->get('home', 'Home::index');
+
+$routes->get('productdetail', 'Home::productdetail');
+$routes->get('shopdetail', 'Home::shopdetail');
+
+
 $routes->get('dashboard', 'Home::dashboard');
 
 $routes->get('user', 'Home::user');
