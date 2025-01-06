@@ -8,7 +8,13 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
+        return view('home');
+    }
+    public function productdetail(){
+        return view('productdetail');
+    }
+    public function shopdetail(){
+        return view('shopdetail');
     }
     public function login(){
         return view('admin/login');
