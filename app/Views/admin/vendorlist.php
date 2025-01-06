@@ -26,11 +26,11 @@
                               <tr>
                                   <th>Sr.No.</th>
                                   <th>Name</th>
-                                  <th>Contact Person Name</th>
+                                  <th class="text-nowrap">Contact Person Name</th>
                                   <th>Mobile No.</th>
                                   <th>Email</th>
                                   <th>Country / State / City </th>
-                                  <th>Vendor Type</th>
+                                  <th class="text-nowrap">Vendor Type</th>
                                   <th>Gst No.</th>
                                   <th>Pan No.</th>
                                   <th>Actions</th>
@@ -45,7 +45,7 @@
                                 <?php foreach($vendor_data as $data) {  ?>
                                   <tr>
                                       <td><?=$i++ ; ?></td>
-                                      <td><?=$data->vendor_name; ?></td>
+                                      <td class="text-nowrap"><?=$data->vendor_name; ?></td>
                                       <td><?=$data->contact_person_name; ?></td>
                                       <td><?=$data->email; ?></td>
                                       <td><?=$data->mobileno; ?></td>

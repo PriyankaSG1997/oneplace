@@ -183,24 +183,7 @@
                     Product Category
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?=base_url();?>country">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    Country
-                  </a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>state">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    State
-                  </a>
-                </li>
-                <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>city">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    City
-                  </a>
-                </li>
+        
                 <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>menu">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->

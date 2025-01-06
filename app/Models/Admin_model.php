@@ -41,6 +41,27 @@ public function getallvendordata($table)
     }
 }
 
+public function getallproductdata($table)
+{
+    $row = $this->db->table($table)
+                    ->select('
+                        tbl_product.*, 
+               
+                        tbl_productcategory.pcname AS productcategory_name')
+           
+                    ->join('tbl_productcategory', 'tbl_productcategory.id = tbl_product.productcategory_id', 'left')
+                    ->where('tbl_product.is_deleted', 'N')
+                    ->get()
+                    ->getResult();  
+
+    if (!empty($row)) {
+        return $row;
+    } else {
+        return false;
+    }
+}
+
+
 public function getsingledata($table, $id)
 {
     $row = $this->db->table($table)->where('id', $id)->get()->getRow();

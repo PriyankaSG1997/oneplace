@@ -32,9 +32,17 @@ $routes->get('edit_vendor/(:any)', 'Home::vendor/$1');
 
 $routes->get('product', 'Home::product');
 $routes->get('productlist', 'Home::productlist');
+$routes->get('add_product', 'Home::add_product');
+
+$routes->post('add_product', 'Home::add_product');
+$routes->get('edit_product/(:any)', 'Home::product/$1');
 
 $routes->get('productcategory', 'Home::productcategory');
 $routes->get('productcategorylist', 'Home::productcategorylist');
+$routes->get('add_productcategory', 'Home::add_productcategory');
+
+$routes->post('add_productcategory', 'Home::add_productcategory');
+$routes->get('edit_productcategory/(:any)', 'Home::productcategory/$1');
 
 $routes->get('country', 'Home::country');
 $routes->get('countrylist', 'Home::countrylist');
@@ -47,6 +55,10 @@ $routes->get('citylist', 'Home::citylist');
 
 $routes->get('menu', 'Home::menu');
 $routes->get('menulist', 'Home::menulist');
+$routes->get('add_menu', 'Home::add_menu');
+
+$routes->post('add_menu', 'Home::add_menu');
+$routes->get('edit_menu/(:any)', 'Home::menu/$1');
 
 $routes->get('reports', 'Home::reports');
 

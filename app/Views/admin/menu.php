@@ -17,36 +17,27 @@
  
           <div class="row">
             <div class="col-lg-12">
-              <div class="card">
+              <div class="card w-50">
                 <div class="card-body">
-                  <h4 class="card-title">CompleteAdd Menu</h4>
-                  <form class="cmxform" id="signupForm" method="get" action="#">
-                    <fieldset>
-                      <div class="form-group">
-                        <label for="username">User Name : </label>
-                        <input id="username" class="form-control" name="username" type="text">
-                      </div>
-                     
-                      <div class="form-group">
-                        <label for="mobileno">Mobile Number :</label>
-                        <input id="mobileno" class="form-control" name="mobileno" type="text">
-                      </div>
+                  <h4 class="card-title">Add Menu</h4>
+                  <form class="cmxform" id="menuform" method="post" action="<?=base_url(); ?>add_menu">
+                    <fieldset class="row">
+                      <div class="form-group col-lg-12 col-md-12 col-12">
+                        <label for="menuname">Menu Name</label>
+                        <input id="id" class="form-control" name="id" type="hidden" value="<?php if (!empty($single)) {echo $single->id; } ?>">
 
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" class="form-control" name="email" type="email">
+                        <input id="menuname" class="form-control" name="menuname" type="text" value="<?php if (!empty($single)) {echo $single->menuname; } ?>">
                       </div>
-                      
-                      <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" class="form-control" name="password" type="password">
+                      <div class="form-group col-lg-12 col-md-12 col-12">
+                        <label for="urlname">Menu URL</label>
+
+                        <input id="urlname" class="form-control" name="urlname" type="text" value="<?php if (!empty($single)) {echo $single->urlname; } ?>">
                       </div>
-                      <div class="form-group">
-                        <label for="confirm_password">Confirm password</label>
-                        <input id="confirm_password" class="form-control" name="confirm_password" type="password">
-                      </div>
-                     
-                      <input class="btn btn-primary" type="submit" value="Submit">
+                   
+                   
+                      <div class="form-group col-lg-12 col-md-12 col-12">
+                        <input class="btn btn-primary" type="submit" value="submit" name="submit">
+                      </div>                   
                     </fieldset>
                   </form>
                 </div>
