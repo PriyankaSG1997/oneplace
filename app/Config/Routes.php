@@ -10,6 +10,10 @@ $routes->get('/', 'Home::index');
 $routes->get('login', 'Home::login');
 $routes->get('home', 'Home::index');
 
+$routes->get('billing', 'Home::billing');
+$routes->get('addProduct', 'Home::addProduct');
+
+
 $routes->get('productdetail', 'Home::productdetail');
 $routes->get('shopdetail', 'Home::shopdetail');
 
