@@ -144,52 +144,100 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url();?>dashboard">
               <i class="fa fa-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          -->
+
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url();?>user">
-              <i class="fa fa-user menu-icon"></i> <!-- User Icon -->
-              <span class="menu-title">User</span>
+            <a class="nav-link" href="<?=base_url();?>dashboard">
+              <i class="fa fa-home menu-icon"></i>
+              <span class="menu-title">Billing</span>
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?=base_url();?>user">
+              <i class="fa fa-table menu-icon"></i> <!-- User Icon -->
+              <span class="menu-title">Update Stock / inventry</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
             <a class="nav-link" href="<?=base_url();?>vendor">
-              <i class="fa fa-store menu-icon"></i> <!-- Vendor Icon -->
+              <i class="fa fa-store menu-icon"></i> 
               <span class="menu-title">Vendor</span>
             </a>
+          </li> -->
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#page-vendor" aria-expanded="false" aria-controls="page-vendor">
+            <i class="fa fa-user menu-icon"></i> <!-- User Icon -->              
+            <span class="menu-title">Vendor</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="page-vendor">
+              <ul class="nav flex-column sub-menu">
+              <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>vendor">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    Add vendor 
+                  </a>
+                </li>
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>vendorlist">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    Vendor List
+                  </a>
+                </li>
+        
+               
+              </ul>
+            </div>
           </li>
       
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+            <a class="nav-link" data-toggle="collapse" href="#page-master" aria-expanded="false" aria-controls="page-master">
               <i class="fa fa-cogs menu-icon"></i> <!-- Master Icon -->
               <span class="menu-title">Master</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="page-layouts">
+            <div class="collapse" id="page-master">
               <ul class="nav flex-column sub-menu">
               <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>product">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    Product 
+                   Add Product 
+                  </a>
+                </li>
+
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>productlist">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                   Product List 
                   </a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>productcategory">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    Product Category
+                    Add Product Category
                   </a>
                 </li>
         
+
                 <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>menu">
+                  <a class="nav-link" href="<?=base_url();?>productcategorylist">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    Menu
+                    Product Category List
                   </a>
                 </li>
+        
+                <!-- <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>menu">
+                    <i class="fa fa-circle menu-icon small-dot"></i> 
+                  </a>
+                </li> -->
               </ul>
             </div>
           </li>
@@ -198,6 +246,32 @@
               <i class="far fa-file-alt menu-icon"></i>
               <span class="menu-title">Reports</span>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#page-user" aria-expanded="false" aria-controls="page-user">
+            <i class="fa fa-user menu-icon"></i> <!-- User Icon -->              
+              <span class="menu-title">User</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="page-user">
+              <ul class="nav flex-column sub-menu">
+              <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>user">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    Add User 
+                  </a>
+                </li>
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>userlist">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    User List
+                  </a>
+                </li>
+        
+               
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>

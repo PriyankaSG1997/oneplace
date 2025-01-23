@@ -21,7 +21,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Add Vendor</h4>
-                  <form class="cmxform" id="vendorForm" method="post" action="<?=base_url(); ?>add_vendor">
+                  <form class="cmxform" id="vendorForm" method="post" action="<?=base_url(); ?>add_vendor" enctype="multipart/form-data">
                     <fieldset class="row">
                       <div class="form-group col-lg-4 col-md-4 col-6">
                         <label for="vendor_name">Vendor Name :</label>
@@ -125,6 +125,12 @@
                         <label>PAN No</label>
                         <input type="text" class="form-control" id="pan_no" name="pan_no"  value="<?php if (!empty($single)) {echo $single->pan_no; } ?>" placeholder="Enter PAN no" >
                       </div>
+
+                      <div class="form-group col-lg-4 col-md-4 col-6">
+                        <label for="shopImage">Shop Image :</label>
+                        <input type="file" class="form-control" id="shopImage" name="shopImage" accept="image/*" value="<?php if (!empty($single)) {echo $single->shopImage; } ?>">
+                    </div>
+
                      
 
                                 

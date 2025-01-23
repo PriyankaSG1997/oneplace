@@ -8,10 +8,21 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('home');
+        $model = new Admin_model();
+		$data['product_data'] = $model->getallproductdata('tbl_product');
+        return view('home', $data);
     }
     public function addProduct(){
-        return view('admin/addProduct');
+
+        $uri = service('uri');
+        $id = $uri->getSegment(2);
+        $model = new Admin_model();
+
+		$data['single'] = $model->getsingledata('tbl_product', $id);
+
+        $data['pc_data'] = $model->getalldata('tbl_productcategory');
+         
+        return view('admin/addProduct', $data);
     }
     public function billing(){
         return view('admin/billing');
@@ -130,6 +141,14 @@ class Home extends BaseController
             
             ];
 
+            $image = $this->request->getFile('shopImage');
+            if ($image && $image->isValid() && !$image->hasMoved()) {
+                $newName = $image->getRandomName();
+                $image->move(ROOTPATH . 'public/assets/uploads', $newName);
+                $data['shopImage'] = $newName; // Store the image filename in the database
+            }
+
+
             $db = \Config\Database::Connect();
             $id = $this->request->getVar('id');
 
@@ -172,34 +191,75 @@ class Home extends BaseController
         return view('admin/productlist', $data);
     }
 
-    public function add_product(){
+    public function add_product() {
+        if ($this->request->getVar('submit') == 'submit') {
+            
+            $data = [
+                'productname' => $this->request->getVar('productname'),
+                'productcategory_id' => $this->request->getVar('productcategory_id'),
+                'productNumber' => $this->request->getVar('productNumber'),
+                'productDetails' => $this->request->getVar('productDetails'),
+                'price' => $this->request->getVar('price'),
+                'totalQty' => $this->request->getVar('totalQty'),
+                'product_type' => $this->request->getVar('product_type'),
+                'dprice' => $this->request->getVar('dprice'),
+            ];
+    
+            // Handle file uploads
+            $image = $this->request->getFile('mainImage');
+            if ($image && $image->isValid() && !$image->hasMoved()) {
+                $newName = $image->getRandomName();
+                $image->move(ROOTPATH . 'public/assets/uploads', $newName);
+                $data['mainImage'] = $newName; // Store the image filename in the database
+            }
 
+            $hoverimg = $this->request->getFile('hoverimg');
+            if ($hoverimg && $hoverimg->isValid() && !$hoverimg->hasMoved()) {
+                $newNamehoverimg = $hoverimg->getRandomName();
+                $hoverimg->move(ROOTPATH . 'public/assets/uploads', $newNamehoverimg);
+                $data['hoverimg'] = $newNamehoverimg; // Store the image filename in the database
+            }
+    
+    
+            // Handle variant images
+            $variantImages = $this->request->getFileMultiple('variantImages');
 
-        if($this->request->getVar('submit') == 'submit'){
-        $data = [
-            'productname' => $this->request->getVar('productname'),
-            'productcategory_id' => $this->request->getVar('productcategory_id'),
-        
-        ];
-
-        $db = \Config\Database::Connect();
-        $id = $this->request->getVar('id');
-
-        if(empty($id)){
-            $add_data = $db->table('tbl_product');
-            $add_data->insert($data);
-            session()->setFlashdata('success', 'Data added successfully.');
-
-        }else{
-            $update_data = $db->table('tbl_product')->where('id',$this->request->getVar('id'));
-            $update_data->update($data);
+                if ($variantImages && is_array($variantImages)) {
+                    $variantImageNames = [];
+                    foreach ($variantImages as $variantImage) {
+                        if ($variantImage->isValid() && !$variantImage->hasMoved()) {
+                            $newName = $variantImage->getRandomName();
+                            $variantImage->move(ROOTPATH . 'public/assets/uploads', $newName);
+                            $variantImageNames[] = $newName;
+                        }
+                    }
+                }
+    
+            // Save the variant images, if any
+            if (!empty($variantImageNames)) {
+                $data['variantImages'] = implode(',', $variantImageNames); // Store variant images filenames in the database
+            }
+    
+            // Database connection
+            $db = \Config\Database::Connect();
+            $id = $this->request->getVar('id');
+    
+            if (empty($id)) {
+                // Insert new product
+                $add_data = $db->table('tbl_product');
+                $add_data->insert($data);
+                session()->setFlashdata('success', 'Data added successfully.');
+            } else {
+                // Update existing product
+                $update_data = $db->table('tbl_product')->where('id', $this->request->getVar('id'));
+                $update_data->update($data);
+                session()->setFlashdata('success', 'Data updated successfully.');
+            }
         }
-
-        }
-        return redirect()->to('productlist'); 
-
+    
+        return redirect()->to('productlist'); // Redirect to the product list page
     }
-
+    
     
     public function productcategory(){
         $uri = service('uri');
