@@ -33,6 +33,7 @@
                                   <th class="text-nowrap">Vendor Type</th>
                                   <th>Gst No.</th>
                                   <th>Pan No.</th>
+                                  <th>Shop Image</th>
                                   <th>Actions</th>
                               </tr>
                             </thead>
@@ -53,6 +54,13 @@
                                       <td><?=$data->vendor_type_name; ?></td>
                                       <td><?=$data->gst_no; ?></td>
                                       <td><?=$data->pan_no; ?></td>
+                                      <td class="text-nowrap">
+                                        <?php if (!empty($data->shopImage)): ?>
+                                          <img src="<?= base_url('public/assets/uploads/' . $data->shopImage); ?>" alt="Shop Image" width="50" height="50">
+                                        <?php else: ?>
+                                          No image
+                                        <?php endif; ?>
+                                      </td>
                                       <td>
                                         <a  href="<?=base_url(); ?>edit_vendor/<?=$data->id; ?>">
                                           <i class="far fa-edit me-2"></i>

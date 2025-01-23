@@ -179,17 +179,65 @@ $.validator.addMethod('validBranchName', function(value, element) {
     $("#productform").validate({
       rules: {
         productname: "required",
-        productcategory_id:{
-          required:true,
-          stateSelected: true
-        },      },
-      messages: {
-        productname: "Please enter your product name",
-        productcategory_id:{
-          required: 'Please select product category.',
+        productcategory_id: {
+            required: true,
+            stateSelected: true
         },
-
-      },
+        productNumber: {
+            required: true,
+            minlength: 5,
+            maxlength: 15
+        },
+        productDetails: {
+            required: true,
+            minlength: 10
+        },
+        mainImage: {
+            required: true,
+            extension: "jpg|jpeg|png|gif"
+        },
+      
+        price: {
+            required: true,
+            number: true,
+            min: 0
+        },
+        totalQty: {
+            required: true,
+            digits: true,
+            min: 1
+        }
+    },
+    messages: {
+        productname: "Please enter your product name",
+        productcategory_id: {
+            required: "Please select a product category"
+        },
+        productNumber: {
+            required: "Please enter a product number",
+            minlength: "Product number must be at least 5 characters long",
+            maxlength: "Product number must not exceed 15 characters"
+        },
+        productDetails: {
+            required: "Please enter product details",
+            minlength: "Product details must be at least 10 characters long"
+        },
+        mainImage: {
+            required: "Please upload a main image",
+            extension: "Allowed image formats are jpg, jpeg, png, gif"
+        },
+       
+        price: {
+            required: "Please enter the price",
+            number: "Price must be a valid number",
+            min: "Price cannot be negative"
+        },
+        totalQty: {
+            required: "Please enter total quantity",
+            digits: "Quantity must be a valid number",
+            min: "Quantity must be at least 1"
+        }
+    },
       errorPlacement: function(label, element) {
         label.addClass('mt-2 text-danger');
         label.insertAfter(element);

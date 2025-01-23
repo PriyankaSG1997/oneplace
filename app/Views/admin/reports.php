@@ -16,10 +16,10 @@
                   <ul class="nav nav-pills nav-pills-success" id="pills-tab" role="tablist">
               
                     <li class="nav-item">
-                      <a class="nav-link active" id="visited-customer-tab" data-toggle="pill" href="#visited-customer" role="tab" aria-controls="visited-customer" aria-selected="false">Visited Customer (Booking List)</a>
+                      <a class="nav-link active" id="visited-customer-tab" data-toggle="pill" href="#visited-customer" role="tab" aria-controls="visited-customer" aria-selected="false">Billing </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="not-visited-customer-tab" data-toggle="pill" href="#not-visited-customer" role="tab" aria-controls="not-visited-customer" aria-selected="false">Not Visited Customer (Booking List)</a>
+                      <a class="nav-link" id="not-visited-customer-tab" data-toggle="pill" href="#not-visited-customer" role="tab" aria-controls="not-visited-customer" aria-selected="false">Stock </a>
                     </li>
                    
                   </ul>
