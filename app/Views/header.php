@@ -9,7 +9,7 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
-<title>Marazzo premium HTML5 & CSS3 Template</title>
+<title>One-Place</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="<?=base_url(); ?>public/frontend/assets/css/bootstrap.min.css">
