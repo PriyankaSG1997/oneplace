@@ -132,7 +132,7 @@
                 <div class="header-top-inner">
                     <div class="cnt-account">
                         <ul class="list-unstyled">
-                            <li class="myaccount"><a href="<?= base_url() ?>#"><span>My Account</span></a></li>
+                            <li class="myaccount"><a href="<?= base_url() ?>#"><span>My Account1111</span></a></li>
                             <li class="wishlist"><a href="<?= base_url() ?>#"><span>Wishlist</span></a></li>
                             <li class="header_cart hidden-xs"><a href="<?= base_url() ?>#"><span>Booking</span></a></li>
                             <li class="login"><a  id="loginButton"><span>Login</span></a></li>
