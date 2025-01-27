@@ -31,6 +31,8 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="icon" href="<?=base_url(); ?>public/assests/images/One-Place1.png" type="image/x-icon">
+
 <style>
   
 .slider-container {
@@ -48,6 +50,76 @@
         display: block;
         opacity: 1;
       }
+
+/* Modal Overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 30%;
+  left: 35%;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 0px;
+  right: 27px;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+
+/* General Styling for Icons */
+.icon-img {
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    object-fit: contain; /* Ensures the image fits within the dimensions */
+    margin-bottom: 10px;
+}
+
+.icon-img1 {
+    width: 100%; /* Adjust size as needed */
+    height: auto;
+    object-fit: contain; /* Ensures the image fits within the dimensions */
+    margin-bottom: 10px;
+}
+
+
+/* Modal Content Alignment */
+
+
+.text-center {
+    text-align: center;
+}
+.register-section{
+    padding-top:5%;
+}
+.brand-logos{
+    width: 180px; /* Adjust size as needed */
+    height: auto;
+}
+#userLoginButton, #shopLoginButton{
+    padding: 5px 9px !important;
+}
+
+
 </style>
 </head>
 <body class="cnt-home">
@@ -63,7 +135,7 @@
                             <li class="myaccount"><a href="<?= base_url() ?>#"><span>My Account</span></a></li>
                             <li class="wishlist"><a href="<?= base_url() ?>#"><span>Wishlist</span></a></li>
                             <li class="header_cart hidden-xs"><a href="<?= base_url() ?>#"><span>Booking</span></a></li>
-                            <li class="login"><a href="<?= base_url() ?>#"><span>Login</span></a></li>
+                            <li class="login"><a  id="loginButton"><span>Login</span></a></li>
                         </ul>
                     </div>
                     <!-- /.cnt-account -->
@@ -148,7 +220,7 @@
                 <div class="yamm navbar navbar-default" role="navigation">
                     <div class="navbar-header">
                         <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> 
-       <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                     </div>
                     <div class="nav-bg-class">
                         <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
@@ -355,5 +427,36 @@
         <!-- ============================================== NAVBAR : END ============================================== -->
 
     </header>
+    <div id="loginModal" class="modal" style="display: none;">
+    <div class="modal-content row">
+        <span class="close-button">&times;</span>
+            <div class="brand-logo">
+                <img src="<?=base_url(); ?>public/assests/images/One-Place.png" alt="logo" class="brand-logos">
+           
+           
+            </div>
+          
+        <!-- First Section: Shop Login -->
+        <div class="login-section col-lg-6 col-md-6 col-12">
+            <div class="icon-and-button text-center">
+                <img src="<?=base_url(); ?>public/assests/images/store.png" alt="Shop Icon" class="icon-img1" />
+                <a id="shopLoginButton" href="<?=base_url();?>shop-register" class="btn btn-primary mt-3">Shop Register</a>
+            </div>
+        </div>
+
+        <!-- Second Section: User Login -->
+        <div class="login-section col-lg-6 col-md-6 col-12">
+            <div class="icon-and-button text-center">
+                <img src="<?=base_url(); ?>public/assests/images/user.png" alt="User Icon" class="icon-img1" />
+                <a id="userLoginButton" href="<?=base_url();?>user-register" class="btn btn-primary mt-3">User Register</a>
+            </div>
+        </div>
+
+        <!-- Register Link -->
+        <div class="register-section col-lg-12 col-md-12 col-12 text-center ">
+            <p>If you have an account, <a href="<?=base_url(); ?>login">Login</a>.</p>
+        </div>
+    </div>
+</div>
 
 

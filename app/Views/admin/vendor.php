@@ -53,17 +53,17 @@
                       <div class="form-group col-lg-4 col-md-4 col-6">
                         <label for="country_id">Country</label>
                         <select class="form-control choosen" id="country_id" name="Country">
-            <option value="">Please select country</option>
-            <?php 
-            if (!empty($country)) {
-                foreach ($country as $country_result) {
-                    // Check if single data is available or set default to 101
-                    $selected = ((!empty($single) && isset($single->country_id) && $country_result->id == $single->country_id) || (empty($single) && $country_result->id == 101)) ? 'selected="selected"' : '';
-                    echo '<option value="' . $country_result->id . '" ' . $selected . '>' . $country_result->name . '</option>';
-                }
-            } 
-            ?>
-        </select>                 
+                        <option value="">Please select country</option>
+                        <?php 
+                        if (!empty($country)) {
+                            foreach ($country as $country_result) {
+                                // Check if single data is available or set default to 101
+                                $selected = ((!empty($single) && isset($single->country_id) && $country_result->id == $single->country_id) || (empty($single) && $country_result->id == 101)) ? 'selected="selected"' : '';
+                                echo '<option value="' . $country_result->id . '" ' . $selected . '>' . $country_result->name . '</option>';
+                            }
+                        } 
+                        ?>
+                    </select>                 
                       </div>
                       <div class="form-group col-lg-4 col-md-4 col-6">
                         <label for="state_id">State</label>
