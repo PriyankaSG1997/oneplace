@@ -1997,7 +1997,7 @@ header{
 #owl-main {
   text-align: center;
   cursor: default;
-  height: 520px;
+  height: 440px;
 }
 #owl-main .owl-controls {
   display: inline-block;
@@ -7407,3 +7407,8 @@ li.dropdown.navbar-right.special-menu {
 
 .home-banner { margin-top: 30px;}
 .home-banner img {border-radius:5px}	
+
+
+.error{
+  color: #FF5E6D !important;
+}

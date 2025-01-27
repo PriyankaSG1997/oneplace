@@ -4,9 +4,9 @@
   $(function() {
 
     
-$.validator.addMethod('lettersOnly', function(value, element) {
-  return /^[a-zA-Z\s]*$/.test(value); // This regex allows only letters and spaces
-}, 'Please enter letters only');
+    $.validator.addMethod('lettersOnly', function (value, element) {
+      return /^[a-zA-Z\s]*$/.test(value); // This regex allows only letters and spaces
+  }, 'Please enter letters only');
 
 $.validator.addMethod('customPassword', function(value, element) {
   // Password must contain at least one uppercase letter, one lowercase letter, one number, and one symbol. It should be at least 8 characters long.
@@ -156,6 +156,31 @@ $.validator.addMethod('validBranchName', function(value, element) {
       }
     });
 
+    $("#pcsform").validate({
+      rules: {
+        pcsname: "required",
+        productcategory_id: {
+          required: true,
+          stateSelected: true
+      },
+      },
+      messages: {
+        pcsname: "Please enter your Product Sub Category Name",
+        productcategory_id: {
+          required: "Please select a product category"
+      },
+      
+      },
+      errorPlacement: function(label, element) {
+        label.addClass('mt-2 text-danger');
+        label.insertAfter(element);
+      },
+      highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-danger')
+        $(element).addClass('form-control-danger')
+      }
+    });
+
     $("#menuform").validate({
       rules: {
         menuname: "required",
@@ -238,6 +263,9 @@ $.validator.addMethod('validBranchName', function(value, element) {
             min: "Quantity must be at least 1"
         }
     },
+
+
+    
       errorPlacement: function(label, element) {
         label.addClass('mt-2 text-danger');
         label.insertAfter(element);
@@ -247,6 +275,52 @@ $.validator.addMethod('validBranchName', function(value, element) {
         $(element).addClass('form-control-danger')
       }
     });
+
+
+    $("#bannerform").validate({
+      rules: {
+        title1: "required",
+        title2: "required",
+     
+        description: {
+            required: true,
+            minlength: 10
+        },
+        bannerimg: {
+            required: true,
+            extension: "jpg|jpeg|png|gif"
+        },
+      
+      
+    },
+    messages: {
+      title1: "Please enter your title",
+      title2: "Please enter your title",
+
+        description: {
+            required: "Please enter Banner description",
+            minlength: "Banner description must be at least 10 characters long"
+        },
+        bannerimg: {
+            required: "Please upload a main image",
+            extension: "Allowed image formats are jpg, jpeg, png, gif"
+        },
+       
+       
+    },
+
+
+    
+      errorPlacement: function(label, element) {
+        label.addClass('mt-2 text-danger');
+        label.insertAfter(element);
+      },
+      highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-danger')
+        $(element).addClass('form-control-danger')
+      }
+    });
+
 
     $("#vendorForm").validate({
       rules: {

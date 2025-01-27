@@ -10,7 +10,34 @@ class Home extends BaseController
     {
         $model = new Admin_model();
 		$data['product_data'] = $model->getallproductdata('tbl_product');
+        $data['vendor_data'] = $model->getallvendordata('tbl_vendor');
+        $data['pc_data'] = $model->getalldata('tbl_productcategory');
+        $data['banner_data'] = $model->getalldata('tbl_banner');
+
+        // echo "<pre>";print_r( $data['banner_data']);exit();
+
         return view('home', $data);
+    }
+
+    public function userregister(){
+        return view('userregister');
+    }
+    public function shopregister(){
+        $uri = service('uri');
+        $id = $uri->getSegment(2);
+        $model = new Admin_model();
+
+        $data['country'] = $model->getalldata('countries');
+
+        $data['states'] = $model->getalldata('states');
+
+        $data['citys'] = $model->getalldata('cities');
+
+        $data['vendor_type'] = $model->getalldata('tbl_vendortype');
+
+		$data['single'] = $model->getsingledata('tbl_vendor', $id);
+
+        return view('shopregister', $data);
     }
     public function addProduct(){
 
@@ -24,6 +51,8 @@ class Home extends BaseController
          
         return view('admin/addProduct', $data);
     }
+
+
     public function billing(){
         return view('admin/billing');
     }
@@ -418,6 +447,185 @@ class Home extends BaseController
 	}
 
 
+
+    public function banner(){
+
+        $uri = service('uri');
+        $id = $uri->getSegment(2);
+        $model = new Admin_model();
     
+        $data['single'] = $model->getsingledata('tbl_banner', $id);
+    
+    
+        return view('admin/banner',$data);
+    }
+    public function bannerlist(){
+        $model = new Admin_model();
+        $data['banner_data'] = $model->getalldata('tbl_banner');
+        return view('admin/bannerlist', $data);
+    }
+    
+    public function add_banner() {
+        // echo $this->request->getFile('bannerimg');
+
+        // echo "<pre>";print_r($_POST);exit();
+        if ($this->request->getVar('submit') == 'submit') {
+            
+            $data = [
+                'title1' => $this->request->getVar('title1'),
+                'title2' => $this->request->getVar('title2'),
+                'description' => $this->request->getVar('description'),
+             
+            ];
+    
+            // Handle file uploads
+            $image = $this->request->getFile('bannerimg');
+            if ($image && $image->isValid() && !$image->hasMoved()) {
+                $newName = $image->getRandomName();
+                $image->move(ROOTPATH . 'public/assets/uploads', $newName);
+                $data['bannerimg'] = $newName; // Store the image filename in the database
+            }
+    
+        // echo "<pre>";print_r($data);exit();
+
+            $db = \Config\Database::Connect();
+            $id = $this->request->getVar('id');
+    
+            if (empty($id)) {
+                // Insert new banner
+                $add_data = $db->table('tbl_banner');
+                $add_data->insert($data);
+                session()->setFlashdata('success', 'Data added successfully.');
+            } else {
+                // Update existing banner
+                $update_data = $db->table('tbl_banner')->where('id', $this->request->getVar('id'));
+                $update_data->update($data);
+                session()->setFlashdata('success', 'Data updated successfully.');
+            }
+        }
+    
+        return redirect()->to('bannerlist'); // Redirect to the banner list page
+    }
+    
+        public function productsubcategory(){
+        $uri = service('uri');
+        $id = $uri->getSegment(2);
+        $model = new Admin_model();
+        $data['pc_data'] = $model->getalldata('tbl_productcategory');
+
+
+		$data['single'] = $model->getsingledata('tbl_productsubcategory', $id);
+
+        return view('admin/productsubcategory', $data);
+    }
+    public function productsubcategorylist(){
+        $model = new Admin_model();
+		$data['pc_data'] = $model->getallproductsubcategorydata('tbl_productsubcategory');
+        
+
+        return view('admin/productsubcategorylist',$data);
+    }
+
+    public function add_productsubcategory(){
+
+
+        if($this->request->getVar('submit') == 'submit'){
+        $data = [
+            'productcategory_id' => $this->request->getVar('productcategory_id'),
+            'pcsname' => $this->request->getVar('pcsname'),
+        ];
+
+        $db = \Config\Database::Connect();
+        $id = $this->request->getVar('id');
+
+        if(empty($id)){
+            $add_data = $db->table('tbl_productsubcategory');
+            $add_data->insert($data);
+            session()->setFlashdata('success', 'Data added successfully.');
+
+        }else{
+            $update_data = $db->table('tbl_productsubcategory')->where('id',$this->request->getVar('id'));
+            $update_data->update($data);
+        }
+
+        }
+        return redirect()->to('productsubcategorylist'); 
+
+    }
+    public function add_shop(){
+        // echo "<pre>";print_r($_POST);exit();
+
+
+if($this->request->getVar('submit') == 'submit'){
+$data = [
+  'vendor_name' => $this->request->getVar('vendor_name'),
+  'contact_person_name' => $this->request->getVar('contact_person_name'),
+  'email' => $this->request->getVar('email'),
+  'mobileno' => $this->request->getVar('mobileno'),
+  'password' => $this->request->getVar('password'),
+  'country_id' => $this->request->getVar('Country'),
+  'state_id' => $this->request->getVar('State'),
+  'city_id' => $this->request->getVar('city_id'),
+
+  'vendor_type_id' => $this->request->getVar('vendor_type_id'),
+  'gst_no' => $this->request->getVar('gst_no'),
+  'pan_no' => $this->request->getVar('pan_no'),
+
+];
+
+$image = $this->request->getFile('shopImage');
+if ($image && $image->isValid() && !$image->hasMoved()) {
+    $newName = $image->getRandomName();
+    $image->move(ROOTPATH . 'public/assets/uploads', $newName);
+    $data['shopImage'] = $newName; // Store the image filename in the database
+}
+
+
+$db = \Config\Database::Connect();
+$id = $this->request->getVar('id');
+
+if(empty($id)){
+    $add_data = $db->table('tbl_vendor');
+    $add_data->insert($data);
+    session()->setFlashdata('success', 'Data added successfully.');
+
+}else{
+    $update_data = $db->table('tbl_vendor')->where('id',$this->request->getVar('id'));
+    $update_data->update($data);
+}
+
+}
+return redirect()->to('shop-register'); 
+
+}
+   
+
+public function add_customer() {
+           
+
+    if ($this->request->getVar('submit') == 'submit') {
+     
+
+        $data = [
+            'name' => $this->request->getVar('name'),
+            'whatsappnumber' => $this->request->getVar('whatsappnumber'),
+            'password'    => $this->request->getVar('password'),
+        ];
+        $db = \Config\Database::connect();
+        $id = $this->request->getVar('id');
+
+        if (empty($id)) {
+            $add_data = $db->table('tbl_customer');
+            $add_data->insert($data);
+            session()->setFlashdata('success', 'Data added successfully.');
+        } else {
+            $update_data = $db->table('tbl_customer')->where('id', $id);
+            $update_data->update($data);
+            session()->setFlashdata('success', 'Data updated successfully.');
+        }
+    }
+
+    return redirect()->to('user-register');
+}
 	
 }

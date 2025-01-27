@@ -92,6 +92,26 @@ public function get_city_name_location($state_id){
 
 }
 
+public function getallproductsubcategorydata($table)
+{
+    $row = $this->db->table($table)
+                    ->select('
+                        tbl_productsubcategory.*, 
+               
+                        tbl_productcategory.pcname AS productcategory_name')
+           
+                    ->join('tbl_productcategory', 'tbl_productcategory.id = tbl_productsubcategory.productcategory_id', 'left')
+                    ->where('tbl_productsubcategory.is_deleted', 'N')
+                    ->get()
+                    ->getResult();  
+
+    if (!empty($row)) {
+        return $row;
+    } else {
+        return false;
+    }
+}
+
 
     // public function getUserModelById($id)
     // {

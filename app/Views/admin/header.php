@@ -232,6 +232,22 @@
                     Product Category List
                   </a>
                 </li>
+
+
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>productsubcategory">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    Add Product Sub Category
+                  </a>
+                </li>
+        
+
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>productsubcategorylist">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    Product Sub Category List
+                  </a>
+                </li>
         
                 <!-- <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>menu">
@@ -268,6 +284,34 @@
                     User List
                   </a>
                 </li>
+        
+               
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#page-settings" aria-expanded="false" aria-controls="page-master">
+              <i class="fa fa-cogs menu-icon"></i> <!-- Master Icon -->
+              <span class="menu-title">Settings</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="page-settings">
+              <ul class="nav flex-column sub-menu">
+              <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>banner">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                   Add Banner 
+                  </a>
+                </li>
+
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>bannerlist">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                   Banner List 
+                  </a>
+                </li>
+               
         
                
               </ul>

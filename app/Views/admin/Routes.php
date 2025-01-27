@@ -17,9 +17,6 @@ $routes->get('addProduct', 'Home::addProduct');
 $routes->get('productdetail', 'Home::productdetail');
 $routes->get('shopdetail', 'Home::shopdetail');
 
-$routes->get('user-register', 'Home::userregister');
-$routes->get('shop-register', 'Home::shopregister');
-
 
 $routes->get('dashboard', 'Home::dashboard');
 
@@ -36,9 +33,6 @@ $routes->get('add_vendor', 'Home::add_vendor');
 
 $routes->post('add_vendor', 'Home::add_vendor');
 $routes->get('edit_vendor/(:any)', 'Home::vendor/$1');
-
-$routes->get('add_shop', 'Home::add_shop');
-$routes->post('add_shop', 'Home::add_shop');
 
 $routes->get('product', 'Home::product');
 $routes->get('productlist', 'Home::productlist');
@@ -96,8 +90,6 @@ $routes->post('get_state_name_location','Home::get_state_name_location');
 
 $routes->post('get_city_name_location','Home::get_city_name_location');
 
-$routes->post('add_customer','Home::add_customer');
-$routes->get('add_customer','Home::add_customer');
 
 
 
