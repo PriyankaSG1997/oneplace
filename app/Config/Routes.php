@@ -9,10 +9,18 @@ $routes->get('/', 'Home::index');
 
 $routes->get('login', 'Home::login');
 $routes->get('home', 'Home::index');
+$routes->get('home/(:any)', 'Home::index/$1');
+
 
 $routes->get('billing', 'Home::billing');
 $routes->get('addProduct', 'Home::addProduct');
 
+$routes->post('get_product_and_shops', 'Home::get_product_and_shops');
+$routes->get('get_product_and_shops', 'Home::get_product_and_shops');
+
+
+$routes->post('get_search_cities', 'Home::get_search_cities');
+$routes->get('get_search_cities', 'Home::get_search_cities');
 
 $routes->get('productdetail', 'Home::productdetail');
 $routes->get('shopdetail', 'Home::shopdetail');

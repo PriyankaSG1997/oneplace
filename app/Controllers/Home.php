@@ -8,16 +8,38 @@ class Home extends BaseController
 {
     public function index(): string
     {
+        // Retrieve the 'id' and 'name' from the URL query parameters
+        $id = $this->request->getGet('id');
+        $name = $this->request->getGet('name');
+    
+        // Initialize your model
+        $uri = service('uri');
+        $cid = $uri->getSegment(2);
         $model = new Admin_model();
-		$data['product_data'] = $model->getallproductdata('tbl_product');
+        // Check if 'id' or 'name' is provided in the URL, if so, filter product data accordingly
+        if (!empty($id) || !empty($name)) {
+            // Fetch filtered product data by id or name
+            $data['product_data'] = $model->getallproductdataidornamewise('tbl_product', $id, $name);
+        } else if(!empty($cid)){
+           
+            $data['product_data'] = $model->getallproductdataid('tbl_product', $cid);
+
+        }else{
+            $data['product_data'] = $model->getallproductdata('tbl_product');
+
+        }
+    
+        // Fetch additional data
         $data['vendor_data'] = $model->getallvendordata('tbl_vendor');
         $data['pc_data'] = $model->getalldata('tbl_productcategory');
         $data['banner_data'] = $model->getalldata('tbl_banner');
 
-        // echo "<pre>";print_r( $data['banner_data']);exit();
-
+        // echo "<pre>";print_r($data['product_data']);exit();
+    
+        // Return the view with all data
         return view('home', $data);
     }
+    
 
     public function userregister(){
         return view('userregister');
@@ -627,5 +649,42 @@ public function add_customer() {
 
     return redirect()->to('user-register');
 }
+
+// public function get_product_and_shops() {
+//     $model = new Admin_model();
+//     $pdata = $model->getallproductdata('tbl_product');
+
+//     echo json_encode($pdata); // Return the results as JSON
+// }
+
+public function get_product_and_shops() {
+    // Access the request service
+    $request = service('request');
+    
+    // Retrieve the search term from GET request
+    $searchTerm = $request->getGet('search'); // Using getGet() to retrieve the search term
+    
+    $model = new Admin_model();
+
+    // First, search in tbl_product table
+    $pdata = $model->search_in_tableproduct('tbl_product', $searchTerm);
+
+    // If no match found in tbl_product, search in vendor table
+    if (empty($pdata)) {
+        $pdata = $model->search_in_tablevendor('tbl_vendor', $searchTerm);
+    }
+
+    // If still no match found, search in cities table
+    if (empty($pdata)) {
+        $pdata = $model->search_in_tablecities('cities', $searchTerm);
+    }
+
+    // Return the results as JSON
+    echo json_encode($pdata); // Make sure your results are in array format, suitable for JSON encoding
+}
+
+
+
+
 	
 }

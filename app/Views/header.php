@@ -120,6 +120,32 @@
 }
 
 
+
+
+    #productSuggestions {
+        display: none;
+        position: absolute;
+    top: 21px;
+    left: -538px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    }
+    #productSuggestions li {
+        padding: 10px;
+        cursor: pointer;
+    }
+    #productSuggestions li:hover {
+        background-color: #f5f5f5;
+    }
+
+    
+
 </style>
 </head>
 <body class="cnt-home">
@@ -132,7 +158,7 @@
                 <div class="header-top-inner">
                     <div class="cnt-account">
                         <ul class="list-unstyled">
-                            <li class="myaccount"><a href="<?= base_url() ?>#"><span>My Account1111</span></a></li>
+                            <li class="myaccount"><a href="<?= base_url() ?>#"><span>My Account</span></a></li>
                             <li class="wishlist"><a href="<?= base_url() ?>#"><span>Wishlist</span></a></li>
                             <li class="header_cart hidden-xs"><a href="<?= base_url() ?>#"><span>Booking</span></a></li>
                             <li class="login"><a  id="loginButton"><span>Login</span></a></li>
@@ -176,26 +202,32 @@
                     <!-- /.logo-holder -->
 
                     <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12 top-search-holder">
+
                         <!-- /.contact-row -->
                         <!-- ============================================================= SEARCH AREA ============================================================= -->
                         <div class="search-area">
-                            <form>
-                                <div class="control-group">
-                                    <ul class="categories-filter animate-dropdown">
-                                        <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="<?= base_url() ?>category.html">Cities <b class="caret"></b></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li class="menu-header">Kothrud</li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= base_url() ?>category.html">- Pimpri</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= base_url() ?>category.html">- Chinchwad</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= base_url() ?>category.html">- Baner</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= base_url() ?>category.html">- Wakad</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <input class="search-field" placeholder="Search here..." />
-                                    <a class="search-button" href="<?= base_url() ?>#"></a>
-                                </div>
-                            </form>
+                        <form>
+    <div class="control-group">
+        <a class="search-button" href="#" onclick="fetchProductData()"></a>
+
+        <!-- Search Input -->
+        <input class="search-field" type="text" id="productSearch" placeholder="Search here product, shop, city wise..." onkeyup="fetchSuggestions()" />
+
+        <!-- Hidden Fields to store selected product ID and name -->
+        <input type="hidden" id="selectedId" />
+        <input type="hidden" id="selectedName" />
+
+        <!-- Product Suggestions Dropdown -->
+        <ul class="categories-filter animate-dropdown">
+            <li class="dropdown">
+                <ul class="dropdown-menu" role="menu" id="productSuggestions">
+                    <!-- Suggestions will appear here -->
+                </ul>
+            </li>
+        </ul>
+    </div>
+</form>
+
                         </div>
                         <!-- /.search-area -->
                         <!-- ============================================================= SEARCH AREA : END ============================================================= -->
@@ -227,7 +259,7 @@
                             <div class="nav-outer">
                                 <ul class="nav navbar-nav">
                                     <li class="active dropdown"> <a href="<?= base_url() ?>home">Home</a> </li>
-                                    <li class="dropdown yamm mega-menu"> <a href="<?= base_url() ?>home" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">vehicles</a>
+                                    <li class="dropdown yamm mega-menu"> <a  data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">vehicles</a>
                                         <ul class="dropdown-menu container">
                                             <li>
                                                 <div class="yamm-content ">
@@ -235,8 +267,8 @@
                                                         <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                             <h2 class="title">Moped</h2>
                                                             <ul class="links">
-                                                                <li><a href="<?= base_url() ?>#">Activa</a></li>
-                                                                <li><a href="<?= base_url() ?>#">Jupiter</a></li>
+                                                                <li><a href="<?= base_url() ?>home/1">Activa</a></li>
+                                                                <li><a href="<?= base_url() ?>home/1">Jupiter</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Jackets</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Sunglasses</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Sport Wear</a></li>
@@ -305,7 +337,7 @@
                                                         <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
                                                             <h2 class="title">Laptops</h2>
                                                             <ul class="links">
-                                                                <li><a href="<?= base_url() ?>#">Gaming</a></li>
+                                                                <li><a href="<?= base_url() ?>home/2">Gaming</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Laptop Skins</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Apple</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Dell</a></li>
@@ -377,14 +409,14 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown"> <a href="<?= base_url() ?>contact.html">Watches</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>home/3">Watches</a> </li>
 
-                                    <li class="dropdown"> <a href="<?= base_url() ?>contact.html">Jwellary</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>home/4">Jwellary</a> </li>
 
-                                    <li class="dropdown"> <a href="<?= base_url() ?>contact.html">Farniture</a> </li>
-                                    <li class="dropdown"> <a href="<?= base_url() ?>contact.html">Home Dekor</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>home/5">Farniture</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>home/6">Home Dekor</a> </li>
 
-                                    <li class="dropdown"> <a href="<?= base_url() ?>contact.html">Bags</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>home/7">Bags</a> </li>
 
 
 
@@ -395,7 +427,7 @@
                                                     <div class="row">
                                                         <div class="col-xs-12 col-menu">
                                                             <ul class="links">
-                                                                <li><a href="<?= base_url() ?>home">BloodBank</a></li>
+                                                                <li><a href="<?= base_url() ?>home/8">BloodBank</a></li>
                                                                 <li><a href="<?= base_url() ?>category.html">Policestation</a></li>
                                                                 <li><a href="<?= base_url() ?>detail.html">Hospital</a></li>
                                                                 

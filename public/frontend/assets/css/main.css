@@ -1238,8 +1238,7 @@ header{
   -moz-border-radius: 5px 0 0 5px;
   border-radius: 5px 0 0 5px;
   padding:18px 13px;
-  width: 67%;
-  font-family: 'Barlow', sans-serif;
+  width: 90%;  font-family: 'Barlow', sans-serif;
   font-size:14px
 }
 .main-header .top-search-holder .search-area .categories-filter {
