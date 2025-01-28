@@ -119,10 +119,97 @@ public function getallproductsubcategorydata($table)
     // }
 
 
+    public function search_in_tableproduct($table, $searchTerm) {
+        // Get the database connection
+        $builder = $this->db->table($table);
+    
+        // Use query builder to add a LIKE condition
+        $builder->like('productname', $searchTerm); // Replace 'productname' with the actual column you want to search
+    
+        // Execute the query and return the results
+        return $builder->get()->getResultArray(); // Use getResultArray() to return the results as an array
+    }
+
+    public function search_in_tablevendor($table, $searchTerm) {
+        // Get the database connection
+        $builder = $this->db->table($table);
+    
+        // Use query builder to add a LIKE condition
+        $builder->like('vendor_name', $searchTerm); // Replace 'productname' with the actual column you want to search
+    
+        // Execute the query and return the results
+        return $builder->get()->getResultArray(); // Use getResultArray() to return the results as an array
+    }
+    public function search_in_tablecities($table, $searchTerm) {
+        // Get the database connection
+        $builder = $this->db->table($table);
+    
+        // Use query builder to add a LIKE condition
+        $builder->like('name', $searchTerm); // Replace 'productname' with the actual column you want to search
+    
+        // Execute the query and return the results
+        return $builder->get()->getResultArray(); // Use getResultArray() to return the results as an array
+    }
+    // public function getallproductdataidornamewise($table, $id, $name){
+    //     $builder = $this->db->table($table);
+    
+    //     // Use query builder to add a LIKE condition
+    //     $builder->where('id', $id); 
+    //     $builder->like('productname', $name); // Replace 'productname' with the actual column you want to search
+    
+    //     // Execute the query and return the results
+    //     return $builder->get()->getResultArray(); // Use getResultArray() to return the results as an array
+    // }
+    
 
 
 
+    public function getallproductdataidornamewise($table, $id, $name)
+{
+    $row = $this->db->table($table)
+                    ->select('
+                        tbl_product.*, 
+               
+                        tbl_productcategory.pcname AS productcategory_name')
+           
+                    ->join('tbl_productcategory', 'tbl_productcategory.id = tbl_product.productcategory_id', 'left')
+                    
+                    ->where('tbl_product.is_deleted', 'N')
+                    ->like('tbl_product.productname', $name)
 
+                    ->get()
+                    ->getResult();  
+
+    if (!empty($row)) {
+        return $row;
+    } else {
+        return false;
+    }
+}
+
+
+public function getallproductdataid($table, $id)
+{
+    $row = $this->db->table($table)
+                    ->select('
+                        tbl_product.*, 
+               
+                        tbl_productcategory.pcname AS productcategory_name')
+           
+                    ->join('tbl_productcategory', 'tbl_productcategory.id = tbl_product.productcategory_id', 'left')
+                    
+                    ->where('tbl_product.is_deleted', 'N')
+                    ->like('tbl_product.productcategory_id', $id)
+
+                    ->get()
+                    ->getResult();  
+
+    if (!empty($row)) {
+        return $row;
+    } else {
+        return false;
+    }
+}
 
 
 }

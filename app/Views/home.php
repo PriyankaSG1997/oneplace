@@ -9,7 +9,7 @@
       <div id="hero">
           <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm owl-home">
               <?php foreach ($banner_data as $banner) : ?>
-                  <div class="item" style="background-image: url('public/assets/uploads/<?= $banner->bannerimg; ?>');">
+                  <div class="item" style="background-image: url('<?=base_url(); ?>public/assets/uploads/<?= $banner->bannerimg; ?>');">
                       <div class="container-fluid">
                           <div class="caption bg-color vertical-center text-left">
                               <div class="slider-header fadeInDown-1"><?= $banner->title1; ?></div>
