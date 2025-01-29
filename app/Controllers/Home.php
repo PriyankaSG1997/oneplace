@@ -39,6 +39,36 @@ class Home extends BaseController
         // Return the view with all data
         return view('home', $data);
     }
+
+    public function category()
+    {
+        // Retrieve the 'id' and 'name' from the URL query parameters
+        $id = $this->request->getGet('id');
+        $name = $this->request->getGet('name');
+    
+        // Initialize your model
+        $uri = service('uri');
+        $cid = $uri->getSegment(2);
+        $model = new Admin_model();
+        // Check if 'id' or 'name' is provided in the URL, if so, filter product data accordingly
+        if (!empty($id) || !empty($name)) {
+            // Fetch filtered product data by id or name
+            $data['product_data'] = $model->getallproductdataidornamewise('tbl_product', $id, $name);
+        } else if(!empty($cid)){
+           
+            $data['product_data'] = $model->getallproductdataid('tbl_product', $cid);
+
+        }else{
+            $data['product_data'] = $model->getallproductdata('tbl_product');
+
+        }
+
+
+        // echo "<pre>";print_r($data['product_data']);exit();
+    
+        // Return the view with all data
+        return view('category', $data);
+    }
     
 
     public function userregister(){
