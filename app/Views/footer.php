@@ -314,7 +314,7 @@ $(document).ready(function () {
 
         if (selectedId && selectedName) {
             // Redirect to the home page or a specific page with the selected ID and name as parameters
-            window.location.href = "<?= base_url('home'); ?>?id=" + selectedId + "&name=" + encodeURIComponent(selectedName);
+            window.location.href = "<?= base_url('category'); ?>?id=" + selectedId + "&name=" + encodeURIComponent(selectedName);
         } else {
             // If no product is selected, you can either show a message or perform another action
             alert('Please select a product from the list.');

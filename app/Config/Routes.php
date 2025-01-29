@@ -11,6 +11,14 @@ $routes->get('login', 'Home::login');
 $routes->get('home', 'Home::index');
 $routes->get('home/(:any)', 'Home::index/$1');
 
+$routes->get('category/(:any)', 'Home::category/$1');
+$routes->post('category/(:any)', 'Home::category/$1');
+
+
+$routes->get('category', 'Home::category');
+$routes->post('category', 'Home::category');
+
+
 
 $routes->get('billing', 'Home::billing');
 $routes->get('addProduct', 'Home::addProduct');
