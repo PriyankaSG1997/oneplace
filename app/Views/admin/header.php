@@ -19,6 +19,7 @@
   <!-- endinject -->
   <!-- <link rel="shortcut icon" href="http://www.urbanui.com/" /> -->
   <link rel="icon" href="<?=base_url(); ?>public/assests/images/One-Place1.png" type="image/x-icon">
+
 <style>
 .small-dot {
   font-size: 8px !important; /* Adjust size to make the dot smaller */
@@ -102,20 +103,26 @@
   
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="<?=base_url(); ?>public/assests/images/faces/face5.jpg" alt="profile"/>
+                <img src="<?= base_url(); ?>public/assests/images/faces/face5.jpg" alt="profile"/>
+                <span class="ml-2"><?= session()->get('username'); ?></span> <!-- Show Username -->
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="fas fa-cog text-primary"></i>
-                Settings
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item">
-                <i class="fas fa-power-off text-primary"></i>
-                Logout
-              </a>
+                <!-- <a class="dropdown-item">
+                    <i class="fas fa-cog text-primary"></i> Settings
+                </a> -->
+                
+                <a class="dropdown-item" 
+                  href="<?= base_url(session()->get('role_type') == 'vendor' ? 'edit_profile/' . session()->get('vendor_id') : 'edit_user/' . session()->get('vendor_id')); ?>">
+                    <i class="fas fa-cog text-primary"></i> 
+                    Update Profile
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?= base_url('logout'); ?>"> <!-- Corrected href -->
+                    <i class="fas fa-power-off text-primary"></i> Logout
+                </a>
             </div>
-          </li>
+        </li>
   
         </ul>
       
@@ -136,11 +143,10 @@
               </div>
               <div class="profile-name">
                 <p class="name">
-                  Welcome Jane
-                </p>
+                <?= session()->get('username'); ?>
+                              </p>
                 <p class="designation">
-                  Super Admin
-                </p>
+<?= session()->get('role_type'); ?>                </p>
               </div>
             </div>
           </li>
@@ -153,13 +159,13 @@
           -->
 
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url();?>dashboard">
+            <a class="nav-link" href="<?=base_url();?>billing">
               <i class="fa fa-home menu-icon"></i>
               <span class="menu-title">Billing</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url();?>user">
+            <a class="nav-link" href="<?=base_url();?>inventory">
               <i class="fa fa-table menu-icon"></i> <!-- User Icon -->
               <span class="menu-title">Update Stock / inventry</span>
             </a>
@@ -171,9 +177,9 @@
             </a>
           </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-vendor" aria-expanded="false" aria-controls="page-vendor">
-            <i class="fa fa-user menu-icon"></i> <!-- User Icon -->              
+            <i class="fa fa-user menu-icon"></i>              
             <span class="menu-title">Vendor</span>
               <i class="menu-arrow"></i>
             </a>
@@ -181,13 +187,13 @@
               <ul class="nav flex-column sub-menu">
               <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>vendor">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    <i class="fa fa-circle menu-icon small-dot"></i> 
                     Add vendor 
                   </a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>vendorlist">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    <i class="fa fa-circle menu-icon small-dot"></i> 
                     Vendor List
                   </a>
                 </li>
@@ -195,7 +201,7 @@
                
               </ul>
             </div>
-          </li>
+          </li> -->
       
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-master" aria-expanded="false" aria-controls="page-master">
@@ -234,9 +240,9 @@
                 </li>
 
 
-                <li class="nav-item d-none d-lg-block">
+                <!-- <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>productsubcategory">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    <i class="fa fa-circle menu-icon small-dot"></i> 
                     Add Product Sub Category
                   </a>
                 </li>
@@ -244,10 +250,10 @@
 
                 <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>productsubcategorylist">
-                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    <i class="fa fa-circle menu-icon small-dot"></i> 
                     Product Sub Category List
                   </a>
-                </li>
+                </li> -->
         
                 <!-- <li class="nav-item d-none d-lg-block">
                   <a class="nav-link" href="<?=base_url();?>menu">
@@ -267,21 +273,21 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#page-user" aria-expanded="false" aria-controls="page-user">
             <i class="fa fa-user menu-icon"></i> <!-- User Icon -->              
-              <span class="menu-title">User</span>
+              <span class="menu-title">Staff</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="page-user">
               <ul class="nav flex-column sub-menu">
               <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>user">
+                  <a class="nav-link" href="<?=base_url();?>staff">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    Add User 
+                    Add Staff 
                   </a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>userlist">
+                  <a class="nav-link" href="<?=base_url();?>stafflist">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                    User List
+                    Staff List
                   </a>
                 </li>
         
@@ -299,16 +305,23 @@
             <div class="collapse" id="page-settings">
               <ul class="nav flex-column sub-menu">
               <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>banner">
+                  <a class="nav-link" href="<?=base_url();?>offer ">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                   Add Banner 
+                   Add offer 
                   </a>
                 </li>
 
                 <li class="nav-item d-none d-lg-block">
-                  <a class="nav-link" href="<?=base_url();?>bannerlist">
+                  <a class="nav-link" href="<?=base_url();?>offerlist">
                     <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
-                   Banner List 
+                    offer  List 
+                  </a>
+                </li>
+
+                <li class="nav-item d-none d-lg-block">
+                  <a class="nav-link" href="<?=base_url();?>vendorlist">
+                    <i class="fa fa-circle menu-icon small-dot"></i> <!-- Smaller Dot Icon -->
+                    Update Profile
                   </a>
                 </li>
                

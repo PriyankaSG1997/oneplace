@@ -5,11 +5,11 @@
         <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-               Add User
+               Add Staff
             </h3>
             <nav aria-label="breadcrumb">
          
-                <a class="btn btn-primary btn-sm" href="<?=base_url(); ?>userlist">User List</a>
+                <a class="btn btn-primary btn-sm" href="<?=base_url(); ?>stafflist">Staff List</a>
 
             </nav>
           </div>
@@ -19,11 +19,11 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Add User</h4>
+                  <h4 class="card-title">Add Staff</h4>
                   <form class="cmxform" id="userForm" method="post" action="<?=base_url(); ?>add_user">
                     <fieldset class="row">
                       <div class="form-group col-lg-4 col-md-4 col-6">
-                        <label for="username">User Name : </label>
+                        <label for="username">Name : </label>
                         <input id="id" class="form-control" name="id" type="hidden" value="<?php if(!empty($single)){ echo $single->id; } ?>">
                         <input id="username" class="form-control" name="username" type="text" value="<?php if(!empty($single)){ echo $single->username; } ?>">
                       </div>

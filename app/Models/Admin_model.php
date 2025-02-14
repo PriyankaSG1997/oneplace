@@ -211,5 +211,13 @@ public function getallproductdataid($table, $id)
     }
 }
 
+public function getallproductdatas($table, $search)
+{
+    return $this->db->table($table)
+        ->like('productname', $search)
+        ->get()
+        ->getResultArray(); // Fetch results as an array
+}
+
 
 }

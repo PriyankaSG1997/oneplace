@@ -33,16 +33,19 @@
               </div>
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
-              <form class="pt-3">
+              <form class="pt-3" method="post" action="<?=base_url(); ?>check_login">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="mobileno" placeholder="Mobile Number">
+                  <input type="text" class="form-control form-control-lg" id="mobileno" name="login" placeholder="Mobile Number">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="<?=base_url(); ?>public/assests/index-2.html">SIGN IN</a>
-                </div>
+                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                  SIGN IN
+                </button>
+              </div>
+
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
