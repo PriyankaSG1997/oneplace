@@ -7,13 +7,22 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
+
 $routes->get('login', 'Home::login');
-$routes->get('home', 'Home::index');
-$routes->get('home/(:any)', 'Home::index/$1');
+$routes->post('check_login', 'Home::check_login');
+$routes->get('logout', 'Home::logout');
+$routes->get('home', 'Home::home');
+$routes->get('home/(:any)', 'Home::home/$1');
 
 $routes->get('category/(:any)', 'Home::category/$1');
 $routes->post('category/(:any)', 'Home::category/$1');
 
+$routes->get('offer', 'Home::offer');
+$routes->post('offer', 'Home::offer');
+
+
+$routes->get('offer/(:any)', 'Home::offer/$1');
+$routes->post('offer/(:any)', 'Home::offer/$1');
 
 $routes->get('category', 'Home::category');
 $routes->post('category', 'Home::category');
@@ -21,6 +30,8 @@ $routes->post('category', 'Home::category');
 
 
 $routes->get('billing', 'Home::billing');
+$routes->get('inventory', 'Home::inventory');
+
 $routes->get('addProduct', 'Home::addProduct');
 
 $routes->post('get_product_and_shops', 'Home::get_product_and_shops');
@@ -39,8 +50,8 @@ $routes->get('shop-register', 'Home::shopregister');
 
 $routes->get('dashboard', 'Home::dashboard');
 
-$routes->get('user', 'Home::user');
-$routes->get('userlist', 'Home::userlist');
+$routes->get('staff', 'Home::user');
+$routes->get('stafflist', 'Home::userlist');
 $routes->get('add_user', 'Home::add_user');
 
 $routes->post('add_user', 'Home::add_user');
@@ -52,6 +63,8 @@ $routes->get('add_vendor', 'Home::add_vendor');
 
 $routes->post('add_vendor', 'Home::add_vendor');
 $routes->get('edit_vendor/(:any)', 'Home::vendor/$1');
+$routes->get('edit_profile/(:any)', 'Home::vendor/$1');
+
 
 $routes->get('add_shop', 'Home::add_shop');
 $routes->post('add_shop', 'Home::add_shop');
@@ -64,8 +77,8 @@ $routes->post('add_product', 'Home::add_product');
 $routes->get('edit_product/(:any)', 'Home::product/$1');
 
 
-$routes->get('banner', 'Home::banner');
-$routes->get('bannerlist', 'Home::bannerlist');
+$routes->get('offer ', 'Home::banner');
+$routes->get('offerlist', 'Home::bannerlist');
 $routes->get('add_banner', 'Home::add_banner');
 
 $routes->post('add_banner', 'Home::add_banner');
@@ -116,6 +129,11 @@ $routes->post('add_customer','Home::add_customer');
 $routes->get('add_customer','Home::add_customer');
 
 
+$routes->post('get_productdata','Home::get_productdata');
+$routes->get('get_productdata','Home::get_productdata');
+
+$routes->post('search_product','Home::search_product');
+$routes->get('search_product','Home::search_product');
 
 
 

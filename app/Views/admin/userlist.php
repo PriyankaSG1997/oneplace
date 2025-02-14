@@ -5,11 +5,11 @@
         <div class="content-wrapper">
           <div class="page-header">
             <h3 class="page-title">
-               User List
+            Staff List
             </h3>
             <nav aria-label="breadcrumb">
            
-                <a class="btn btn-primary btn-sm" href="<?=base_url(); ?>user">Add user</a>
+                <a class="btn btn-primary btn-sm" href="<?=base_url(); ?>staff">Add Staff</a>
 
             </nav>
           </div>
@@ -19,7 +19,7 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">User List</h4>
+                  <h4 class="card-title">Staff List</h4>
                    <div class="table-responsive">
                           <table id="user-listing" class="table">
                             <thead>

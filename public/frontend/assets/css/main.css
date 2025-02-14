@@ -3477,6 +3477,7 @@ font-family: FontAwesome;
 }
 .hot-deals .hot-deal-wrapper .image img{
   width: 100%;
+  height: 330px;
 }
 
 .item .products .image a{

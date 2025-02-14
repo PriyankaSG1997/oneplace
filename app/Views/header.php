@@ -33,6 +33,12 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link rel="icon" href="<?=base_url(); ?>public/assests/images/One-Place1.png" type="image/x-icon">
 
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- <link rel="stylesheet" href="https://daneden.github.io/animate.css/animate.min.css"><link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="<?=base_url(); ?>public/frontend/assets/css/offer.css">
+
 <style>
   
 .slider-container {
@@ -267,8 +273,8 @@
                                                         <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
                                                             <h2 class="title">Moped</h2>
                                                             <ul class="links">
-                                                                <li><a href="<?= base_url() ?>home/1">Activa</a></li>
-                                                                <li><a href="<?= base_url() ?>home/1">Jupiter</a></li>
+                                                                <li><a href="<?= base_url() ?>category/1">Activa</a></li>
+                                                                <li><a href="<?= base_url() ?>category/1">Jupiter</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Jackets</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Sunglasses</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Sport Wear</a></li>
@@ -337,7 +343,7 @@
                                                         <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
                                                             <h2 class="title">Laptops</h2>
                                                             <ul class="links">
-                                                                <li><a href="<?= base_url() ?>home/2">Gaming</a></li>
+                                                                <li><a href="<?= base_url() ?>category/2">Gaming</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Laptop Skins</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Apple</a></li>
                                                                 <li><a href="<?= base_url() ?>#">Dell</a></li>
@@ -409,14 +415,14 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown"> <a href="<?= base_url() ?>home/3">Watches</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>category/3">Watches</a> </li>
 
-                                    <li class="dropdown"> <a href="<?= base_url() ?>home/4">Jwellary</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>category/4">Jwellary</a> </li>
 
-                                    <li class="dropdown"> <a href="<?= base_url() ?>home/5">Farniture</a> </li>
-                                    <li class="dropdown"> <a href="<?= base_url() ?>home/6">Home Dekor</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>category/5">Farniture</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>category/6">Home Dekor</a> </li>
 
-                                    <li class="dropdown"> <a href="<?= base_url() ?>home/7">Bags</a> </li>
+                                    <li class="dropdown"> <a href="<?= base_url() ?>category/7">Bags</a> </li>
 
 
 
@@ -427,7 +433,7 @@
                                                     <div class="row">
                                                         <div class="col-xs-12 col-menu">
                                                             <ul class="links">
-                                                                <li><a href="<?= base_url() ?>home/8">BloodBank</a></li>
+                                                                <li><a href="<?= base_url() ?>category/8">BloodBank</a></li>
                                                                 <li><a href="<?= base_url() ?>category.html">Policestation</a></li>
                                                                 <li><a href="<?= base_url() ?>detail.html">Hospital</a></li>
                                                                 
