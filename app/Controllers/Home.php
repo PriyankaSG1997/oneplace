@@ -5,7 +5,15 @@ use App\Models\Admin_model;
 use CodeIgniter\HTTP\RedirectResponse;
 
 class Home extends BaseController
+
 {
+    protected $db;
+
+    public function __construct()
+    {
+        // Initialize the database connection
+        $this->db = \Config\Database::connect();
+    }
     public function index(): string
     {
     
@@ -1085,6 +1093,71 @@ public function search_product()
 
     return $this->response->setJSON($products);
 }
+
+public function save_bill() {
+    
+    // echo "<pre>";print_r($_POST);exit();
+    $billItemsRaw   = $this->request->getPost('billItems');
+    $billSummaryRaw = $this->request->getPost('billSummary');
+
+
+    if (empty($billItemsRaw) || empty($billSummaryRaw)) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Bill items or summary data is missing.'
+        ]);
+    }
+
+    // Decode JSON data
+    $billItems   = json_decode($billItemsRaw, true);
+    $billSummary = json_decode($billSummaryRaw, true);
+
+    if (is_null($billSummary)) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Bill summary data is invalid or could not be decoded.'
+        ]);
+    }
+    if (is_null($billItems)) {
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => 'Bill items data is invalid or could not be decoded.'
+        ]);
+    }
+
+    // Proceed to save data in the database...
+    $bill_data = [
+        'total_amount' => $billSummary['totalAmount'],
+        'gst_amount'   => $billSummary['gstAmount'],
+        'cgst_amount'  => $billSummary['cgstAmount'],
+        'final_total'  => $billSummary['finalTotal'],
+    ];
+    $this->db->table('tbl_bills')->insert($bill_data);
+    $bill_id = $this->db->insertID();
+
+    foreach ($billItems as $item) {
+        $data = [
+            'bill_id'      => $bill_id,
+            'product_name' => $item['productName'],
+            'quantity'     => $item['quantity'],
+            'unit_price'   => $item['unitPrice'],
+            'total'        => $item['total']
+        ];
+        $this->db->table('tbl_bill_items')->insert($data);
+    }
+
+    return $this->response->setJSON(['status' => 'success']);
+}
+
+
+public function billinglist(){
+    $model = new Admin_model();
+    $data['billing_data'] = $model->getalldata('tbl_bills');
+    // echo "<pre>";print_r($data['billing_data']);exit();
+    return view('admin/billinglist', $data);
+}
+
+
 
 
 	
