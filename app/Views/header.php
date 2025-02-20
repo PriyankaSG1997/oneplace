@@ -9,6 +9,10 @@
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
+
+<meta name="csrf-token" content="<?= csrf_hash(); ?>">
+<meta name="csrf-name" content="<?= csrf_token(); ?>">
+
 <title>One-Place</title>
 
 <!-- Bootstrap Core CSS -->
@@ -153,6 +157,7 @@
     
 
 </style>
+
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->

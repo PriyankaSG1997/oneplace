@@ -1,4 +1,4 @@
-<?php include("header.php"); ?>
+<?php include("header.php"); ?> 
 
 <div class="main-panel">
   <div class="content-wrapper">
@@ -7,232 +7,293 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
+          <div class="row card-body">
+          <div class="col-lg-12">
             <h4 class="card-title">Create Bill</h4>
+          </div>
 
-            <!-- Product Search with Input -->
-            <div class="form-group d-flex align-items-center gap-3">
-              <!-- Product Search Input -->
-              <div style="flex: 1; position: relative;">
-                <label for="productSearch" class="mb-1">Search Product:</label>
-                <input type="text" class="form-control" id="productSearch" placeholder="Search Product...">
-                <div class="yamm-content" id="productSuggestions" style="display: none;">
-                                                    <div class="row">
-                                                        <div class="col-xs-12 col-menu">
-                                                            <ul class="links">
-                                                                <li><a href="http://localhost/oneplace/home">BloodBank</a></li>
-                                                                <li><a href="http://localhost/oneplace/category.html">Policestation</a></li>
-                                                                <li><a href="http://localhost/oneplace/detail.html">Hospital</a></li>
-                                                                
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-              </div>
-
-              <!-- Quantity Input -->
-              <div style="flex: 1;">
-                <label for="productQty" class="mb-1">Enter Quantity:</label>
-                <input type="number" class="form-control" id="productQty" placeholder="Enter Quantity" style="margin-left: 1px;">
-              </div>
-
-              <!-- Add Button -->
-              <div>
-                <button id="addProduct" class="btn btn-primary mt-4" style="margin-left: 3px;">Add to Bill</button>
+            <!-- Product Search with Suggestions -->
+             
+            <div class="col-lg-3 form-group position-relative">
+              <label for="productSearch">Search Product:</label>
+              <input type="text" class="form-control" id="productSearch" placeholder="Search Product...">
+              <div id="productSuggestions" class="dropdown-menu w-100" style="display: none; position: absolute; z-index: 1000;">
+                <!-- Suggestions will be populated dynamically -->
               </div>
             </div>
 
-            <!-- Bill Grid -->
-            <div class="table-responsive mt-4">
-              <table class="table table-bordered" id="billTable">
-                <thead>
-                  <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>Line Total</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Rows added dynamically -->
-                </tbody>
-              </table>
+            <!-- Price Input (New) -->
+            <div class="col-lg-3 form-group">
+              <label for="productPrice">Unit Price (Rs.):</label>
+              <input type="text" class="form-control" id="productPrice" readonly>
+            </div>
+            <!-- Quantity Input -->
+            <div class="form-group col-lg-3 ">
+              <label for="productQty">Enter Quantity:</label>
+              <input type="number" class="form-control" id="productQty" placeholder="Enter Quantity">
+            </div>
+            <div class="form-group col-lg-3 " style="    padding-top: 2%;
+    padding-left: 2%;">
+
+            <!-- Add Button -->
+            <button id="addProduct" class="btn btn-primary ">Add to Bill</button>
             </div>
 
-            <!-- Discount and Total -->
-            <div class="mt-4">
-              <div class="form-group d-flex align-items-center gap-3">
-                <!-- Discount Type -->
-                <div style="flex: 1;">
-                  <label for="discountType" class="mb-1">Discount Type:</label>
-                  <select class="form-control" id="discountType">
-                    <option value="amount">Amount</option>
-                    <option value="percentage">Percentage</option>
-                  </select>
-                </div>
-                <!-- Discount Value -->
-                <div style="flex: 1;">
-                  <label for="discountValue" class="mb-1">Discount Value:</label>
-                  <input type="number" class="form-control" id="discountValue" placeholder="Enter Discount">
-                </div>
+            <!-- Bill Table -->
+            <div class="form-group col-lg-12">
+              <label>Bill Details:</label>
+              <div class="table-responsive mt-4">
+                <table class="table table-bordered" id="billTable">
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Quantity (Nos.)</th>
+                      <th>Unit Price (Rs.)</th>
+                      <th>Total (Rs.)</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Rows will be added dynamically -->
+                  </tbody>
+                </table>
               </div>
-
-              <!-- Totals Section -->
-              <div class="mt-4 d-flex align-items-center justify-content-between gap-4">
-              <h5>Total: ₹<span id="totalProductPrice">0.00</span></h5>
-              <h5>GST (9%): ₹<span id="gstAmount">0.00</span></h5>
-              <h5>CGST (9%): ₹<span id="cgstAmount">0.00</span></h5>
-              <h5>Final Total: ₹<span id="finalTotalAmount">0.00</span></h5>
-              <h5>Net Payable: ₹<span id="netPayableAmount">0.00</span></h5>
-              </div>
-
-
             </div>
 
-            <button id="saveBill" class="btn btn-success">Save Bill</button>
+            <!-- Bill Summary Table -->
+            <div class="form-group col-lg-12">
+              <div class="table-responsive mt-4">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <th style="width: 70%;">Total Amount (Rs.)</th>
+                      <td style="width: 30%;"><span id="totalAmount">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <th>GST (9%)</th>
+                      <td><span id="gstAmount">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <th>CGST (9%)</th>
+                      <td><span id="cgstAmount">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <th>Final Total (Rs.)</th>
+                      <td><strong><span id="finalTotal">0.00</span></strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="form-group col-lg-12">
+              <button id="saveBill" class="btn btn-success mt-3">Save Bill</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-</div>
 
+
+<?php include("footer.php"); ?>
+
+<!-- jQuery (Ensure it's included before this script) -->
 <script>
-  const products = [
-    { id: 1, name: "Laptop", price: 1000 },
-    { id: 2, name: "Smartphone", price: 500 },
-    { id: 3, name: "Headphones", price: 100 },
-    { id: 4, name: "Keyboard", price: 50 },
-    { id: 5, name: "Mouse", price: 30 }
-  ];
+  $(document).ready(function () {
+    $("#productSearch").on("input", function () {
+      let query = $(this).val().trim();
 
-  let billItems = [];
+      if (query.length > 0) {
+        $.ajax({
+          url: "<?=base_url(); ?>search_product", // Backend URL
+          type: "GET",
+          data: { search: query },
+          dataType: "json",
+          success: function (response) {
+            let suggestions = $("#productSuggestions");
+            suggestions.empty().show();
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const productSearch = document.getElementById("productSearch");
-    const productSuggestions = document.getElementById("productSuggestions");
-
-    // Handle product search
-    productSearch.addEventListener("input", function () {
-      const query = productSearch.value.toLowerCase().trim();
-      productSuggestions.innerHTML = ""; // Clear suggestions
-
-      if (query) {
-        const filteredProducts = products.filter((product) =>
-          product.name.toLowerCase().includes(query)
-        );
-
-        if (filteredProducts.length > 0) {
-          productSuggestions.style.display = "block";
-          filteredProducts.forEach((product) => {
-            const suggestion = document.createElement("a");
-            suggestion.classList.add("dropdown-item");
-            suggestion.textContent = `${product.name} - ₹${product.price}`;
-            suggestion.addEventListener("click", function () {
-              productSearch.value = product.name; // Set input value
-              productSearch.dataset.productId = product.id; // Save product ID
-              productSuggestions.style.display = "none"; // Hide suggestions
-            });
-            productSuggestions.appendChild(suggestion);
-          });
-        } else {
-          productSuggestions.style.display = "none";
-        }
+            if (response.length > 0) {
+              response.forEach(product => {
+                let item = `<a href="#" class="dropdown-item product-item" data-id="${product.id}" data-price="${product.price}">
+                              ${product.productname}
+                            </a>`;
+                suggestions.append(item);
+              });
+            } else {
+              suggestions.hide();
+            }
+          }
+        });
       } else {
-        productSuggestions.style.display = "none";
+        $("#productSuggestions").hide();
+      }
+    });
+
+    // Select product from suggestions
+// Select product from suggestions
+$(document).on("click", ".product-item", function (e) {
+  e.preventDefault();
+  let productName = $(this).text().split(" - ")[0];
+  let productId = $(this).data("id");
+  let price = $(this).data("price");
+
+  // Get the product search input element
+  var $searchInput = $("#productSearch");
+  
+  // Set the product name and store related data
+  $searchInput.val(productName);
+  $searchInput.data("productId", productId);
+  $searchInput.data("price", price);
+
+  // Set the price in the unit price input field
+  $("#productPrice").val(price);
+
+  // Focus the input and move the caret to the beginning
+  $searchInput.focus();
+  if ($searchInput[0].setSelectionRange) {
+    $searchInput[0].setSelectionRange(0, 0);
+  }
+
+  $("#productSuggestions").hide();
+});
+
+
+
+    // Hide suggestions when clicking outside
+    $(document).click(function (event) {
+      if (!$(event.target).closest("#productSearch, #productSuggestions").length) {
+        $("#productSuggestions").hide();
       }
     });
 
     // Add product to bill
-    document.getElementById("addProduct").addEventListener("click", function () {
-      const productId = productSearch.dataset.productId;
-      const productName = productSearch.value;
-      const qty = document.getElementById("productQty").value;
+// Add product to bill
+$("#addProduct").click(function () {
+    let productName = $("#productSearch").val();
+    let productId = $("#productSearch").data("productId");
+    let price = $("#productSearch").data("price");
+    let qty = $("#productQty").val();
 
-      if (!productId || qty <= 0) {
-        alert("Please select a product and enter a valid quantity.");
+    if (!productId || qty <= 0) {
+        alert("Please select a valid product and quantity.");
         return;
+    }
+
+    let total = price * qty;
+
+    let row = `<tr>
+                <td>${productName}</td>
+                <td>${qty}</td>
+                <td>${price}</td>
+                <td>${total.toFixed(2)}</td>
+                <td><button class="btn btn-danger btn-sm removeItem">Remove</button></td>
+              </tr>`;
+
+    $("#billTable tbody").append(row);
+    updateTotal();
+
+    // Clear input fields after adding to the bill
+    $("#productSearch").val("").removeData("productId").removeData("price");
+    $("#productQty").val("");
+    $("#productPrice").val("");
+});
+
+
+    // Remove item
+    $(document).on("click", ".removeItem", function () {
+      $(this).closest("tr").remove();
+      updateTotal();
+    });
+
+    // Update total
+    function updateTotal() {
+      let totalAmount = 0;
+
+      $("#billTable tbody tr").each(function () {
+        let rowTotal = parseFloat($(this).find("td:nth-child(4)").text().replace("₹", ""));
+        totalAmount += rowTotal;
+      });
+
+      let gst = totalAmount * 0.09;
+      let cgst = totalAmount * 0.09;
+      let finalTotal = totalAmount + gst + cgst;
+
+      $("#totalAmount").text(totalAmount.toFixed(2));
+      $("#gstAmount").text(gst.toFixed(2));
+      $("#cgstAmount").text(cgst.toFixed(2));
+      $("#finalTotal").text(finalTotal.toFixed(2));
+    }
+  });
+  $(document).ready(function () {
+  // ... your existing code ...
+
+  // Read CSRF token and token name from meta tags
+  var csrfName = $('meta[name="csrf-name"]').attr('content'); // e.g., "csrf_test_name"
+  var csrfHash = $('meta[name="csrf-token"]').attr('content');  // e.g., "a1b2c3d4..."
+
+  $("#saveBill").click(function () {
+    // Gather bill items from the table
+    var billItems = [];
+    $("#billTable tbody tr").each(function () {
+      var productName = $(this).find("td:eq(0)").text().trim();
+      var quantity    = $(this).find("td:eq(1)").text().trim();
+      var unitPrice   = $(this).find("td:eq(2)").text().trim();
+      var total       = $(this).find("td:eq(3)").text().trim();
+      
+      billItems.push({
+        productName: productName,
+        quantity: quantity,
+        unitPrice: unitPrice,
+        total: total
+      });
+    });
+
+    // Gather bill summary details
+    var billSummary = {
+      totalAmount: $("#totalAmount").text().trim(),
+      gstAmount:   $("#gstAmount").text().trim(),
+      cgstAmount:  $("#cgstAmount").text().trim(),
+      finalTotal:  $("#finalTotal").text().trim()
+    };
+
+    // Debug: Log the values to the console
+    console.log("Bill Items:", billItems);
+    console.log("Bill Summary:", billSummary);
+
+    // Check if data is actually present
+    if (billItems.length === 0 || !billSummary.totalAmount) {
+      alert("Bill items or summary data is empty.");
+      return;
+    }
+
+    // Prepare data to send, including the CSRF token
+    var dataToSend = {};
+    dataToSend[csrfName] = csrfHash; // add CSRF token
+    dataToSend.billItems = JSON.stringify(billItems);
+    dataToSend.billSummary = JSON.stringify(billSummary);
+
+    // Send the data to the backend via AJAX
+    $.ajax({
+      url: "<?= base_url(); ?>save_bill",
+      method: "POST",
+      data: dataToSend,
+      success: function (response) {
+        alert("Bill saved successfully!");
+        location.reload();
+      },
+      error: function (xhr, status, error) {
+        alert("Error saving bill: " + error);
       }
-
-      const product = products.find((p) => p.id == productId);
-      const lineTotal = product.price * qty;
-
-      // Add to billItems
-      billItems.push({ id: product.id, name: product.name, qty, price: product.price, lineTotal });
-
-      // Update grid view
-      updateBillTable();
-    });
-
-    // Calculate and update totals
-    document.getElementById("discountValue").addEventListener("input", updateBillTable);
-    document.getElementById("discountType").addEventListener("change", updateBillTable);
-
-    // Save bill logic
-    document.getElementById("saveBill").addEventListener("click", function () {
-      console.log("Bill Saved", billItems);
-      alert("Bill saved successfully!");
-      location.reload(); // Reload page to reset bill
     });
   });
-
-  function updateBillTable() {
-  const billTable = document.getElementById("billTable").querySelector("tbody");
-  billTable.innerHTML = "";
-
-  let total = 0;
-
-  // Calculate total product price
-  billItems.forEach((item, index) => {
-    total += item.lineTotal;
-
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.qty}</td>
-      <td>₹${item.price}</td>
-      <td>₹${item.lineTotal}</td>
-      <td><button class="btn btn-danger" onclick="removeItem(${index})">Remove</button></td>
-    `;
-    billTable.appendChild(row);
-  });
-
-  // Calculate GST and CGST
-  const gst = (total * 9) / 100; // 9% GST
-  const cgst = gst; // 9% CGST
-  const finalTotal = total + gst + cgst; // Final total before discount
-
-  // Get discount type and value
-  const discountType = document.getElementById("discountType").value;
-  const discountValue = parseFloat(document.getElementById("discountValue").value) || 0;
-  let discount = 0;
-
-  if (discountType === "percentage") {
-    discount = (discountValue / 100) * finalTotal; // Calculate discount as percentage of final total
-  } else {
-    discount = discountValue; // Fixed amount discount
-  }
-
-  const netPayable = finalTotal - discount; // Calculate net payable after discount
-
-  // Update values in the UI
-  document.getElementById("totalProductPrice").textContent = total.toFixed(2);
-  document.getElementById("gstAmount").textContent = gst.toFixed(2);
-  document.getElementById("cgstAmount").textContent = cgst.toFixed(2);
-  document.getElementById("finalTotalAmount").textContent = finalTotal.toFixed(2);
-  document.getElementById("netPayableAmount").textContent = netPayable.toFixed(2);
-}
+});
 
 
-  function removeItem(index) {
-    billItems.splice(index, 1);
-    updateBillTable();
-  }
+
+
 </script>
 
-<?php include("footer.php"); ?>
- 
+

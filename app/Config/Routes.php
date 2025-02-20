@@ -41,7 +41,7 @@ $routes->get('get_product_and_shops', 'Home::get_product_and_shops');
 $routes->post('get_search_cities', 'Home::get_search_cities');
 $routes->get('get_search_cities', 'Home::get_search_cities');
 
-$routes->get('productdetail', 'Home::productdetail');
+$routes->get('productdetail/(:any)', 'Home::productdetail/$1');
 $routes->get('shopdetail', 'Home::shopdetail');
 
 $routes->get('user-register', 'Home::userregister');
@@ -134,6 +134,15 @@ $routes->get('get_productdata','Home::get_productdata');
 
 $routes->post('search_product','Home::search_product');
 $routes->get('search_product','Home::search_product');
+
+
+$routes->post('save_bill','Home::save_bill');
+$routes->get('save_bill','Home::save_bill');
+
+$routes->get('billinglist', 'Home::billinglist');
+
+
+
 
 
 
