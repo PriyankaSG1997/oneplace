@@ -59,6 +59,7 @@ $routes->get('edit_user/(:any)', 'Home::user/$1');
 
 $routes->get('vendor', 'Home::vendor');
 $routes->get('vendorlist', 'Home::vendorlist');
+
 $routes->get('add_vendor', 'Home::add_vendor');
 
 $routes->post('add_vendor', 'Home::add_vendor');
@@ -140,6 +141,12 @@ $routes->post('save_bill','Home::save_bill');
 $routes->get('save_bill','Home::save_bill');
 
 $routes->get('billinglist', 'Home::billinglist');
+$routes->post('billinglist', 'Home::billinglist');
+
+$routes->get('viewbill/(:any)', 'Home::viewbill/$1');
+$routes->post('viewbill/(:any)', 'Home::viewbill/$1');
+
+
 
 
 

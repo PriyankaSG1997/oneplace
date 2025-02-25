@@ -1157,6 +1157,18 @@ public function billinglist(){
     return view('admin/billinglist', $data);
 }
 
+public function viewbill(){
+
+    $uri = service('uri');
+    $id = $uri->getSegment(2);
+    $model = new Admin_model();
+
+    $data['billing_data'] = $model->getsingledata('tbl_bills', $id);
+
+    // echo "<pre>";print_r($data['billing_data']);exit();
+    return view('admin/viewbill', $data);
+}
+
 
 
 

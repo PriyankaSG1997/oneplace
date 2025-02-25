@@ -2,9 +2,16 @@
 
 <div class="main-panel">
   <div class="content-wrapper">
-    <div class="page-header">
-      <h3 class="page-title">Billing</h3>
-    </div>
+  <div class="page-header">
+            <h3 class="page-title">
+            Create Bill
+            </h3>
+            <nav aria-label="breadcrumb">
+           
+                <a class="btn btn-primary btn-sm" href="<?=base_url(); ?>billinglist"> Bill List</a>
+
+            </nav>
+          </div>
 
     <div class="row">
       <div class="col-lg-12">
@@ -70,6 +77,10 @@
                     <tr>
                       <th style="width: 70%;">Total Amount (Rs.)</th>
                       <td style="width: 30%;"><span id="totalAmount">0.00</span></td>
+                    </tr>
+                    <tr>
+                      <th>GST (9%)</th>
+                      <td><span id="gstAmount">0.00</span></td>
                     </tr>
                     <tr>
                       <th>GST (9%)</th>
