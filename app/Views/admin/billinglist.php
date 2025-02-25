@@ -49,7 +49,7 @@
         
 
                                       <td>
-                                      <a  href="<?=base_url(); ?>edit_Billing/<?=$data->id; ?>" title="See Bill">
+                                      <a  href="<?=base_url(); ?>viewbill/<?=$data->id; ?>" target="_blank" title="See Bill">
                                           <i class="far fa-eye me-2"></i>
                                         </a>
                                         <!-- <a  href="<?=base_url(); ?>edit_Billing/<?=$data->id; ?>" title="Update Bill">

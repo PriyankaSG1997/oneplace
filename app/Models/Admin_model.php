@@ -17,6 +17,27 @@ public function getalldata($table)
         return false;
     }
 }
+
+public function getalldatawithwhere($table, $wherecond, $specialConditions = [])
+{
+    $builder = $this->db->table($table);
+
+    foreach ($wherecond as $key => $value) {
+        $builder->where($key, $value);
+    }
+
+    if (!empty($specialConditions)) {
+        foreach ($specialConditions as $key => $value) {
+            $builder->where("DATE($key)", $value);
+        }
+    }
+
+    $result = $builder->get()->getResult();
+    // echo $this->db->getLastQuery();exit();
+
+    return $result ?: false;
+}
+
 public function getallvendordata($table)
 {
     $row = $this->db->table($table)
