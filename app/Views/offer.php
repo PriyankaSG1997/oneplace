@@ -91,7 +91,7 @@
 <script>
 function buyPlan(planName, amount) {
     var options = {
-        "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay Key ID
+        "key": "rzp_test_W7OVOj5FKA4iHt", // Replace with your Razorpay Key ID
         "amount": amount * 100, // Razorpay accepts amount in paise (multiply by 100)
         "currency": "INR",
         "name": "Your Company Name",
@@ -114,3 +114,39 @@ function buyPlan(planName, amount) {
     rzp.open();
 }
 </script>
+
+<!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+        document.getElementByclass('payNow').addEventListener('click', function () {
+            // Fetch the order ID from the server
+            fetch('rzpay.php')
+                .then(response => response.json())
+                .then(data => {
+                    const options = {
+                        key: 'rzp_test_W7OVOj5FKA4iHt', // Replace with your Razorpay Key ID
+                        amount: 100, // Amount in paise
+                        currency: 'INR',
+                        name: 'Your Company Name',
+                        description: 'Test Transaction',
+                        image: 'https://your-logo-url.com/logo.png',
+                        order_id: data.order_id,
+                        handler: function (response) {
+                            alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+                        },
+                        prefill: {
+                            name: 'John Doe',
+                            email: 'john.doe@example.com',
+                            contact: '9999999999'
+                        },
+                        theme: {
+                            color: '#3399cc'
+                        }
+                    };
+
+                    const razorpay = new Razorpay(options);
+                    razorpay.open();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script> -->
